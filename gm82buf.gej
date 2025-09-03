@@ -3,7 +3,7 @@
 	"folder": "gm82",
 	"version": "1.0",
 	"author": "Maarten Baert, renex, Floogle, nik, and Lovey01",
-	"date": "05/08/2025",
+	"date": "03/09/2025",
 	"license": "Free to use, also for commercial games.",
 	"description": "Part of the standard Game Maker 8.2 distribution. This extension package includes functions for memory management, sockets and data hashing functions.",
 	"helpfile": "",
@@ -1136,17 +1136,6 @@
 					"extname": "",
 					"calltype": 12,
 					"helpline": "udpsocket_get_last_port(id)",
-					"hidden": false,
-					"argtypes": [
-						2
-					],
-					"returntype": 2
-				},
-				{
-					"name": "udpsocket_get_max_message_size",
-					"extname": "",
-					"calltype": 12,
-					"helpline": "udpsocket_get_max_message_size(id)",
 					"hidden": false,
 					"argtypes": [
 						2
