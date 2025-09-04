@@ -613,8 +613,8 @@ gmexport const char* buffer_read_hex(double id, double len) {
     //id: buffer index
     //len: length in bytes
     //returns: string
-    //Reads an amount of expanded hex-codes as a string from the buffer.
-    //This will deconvert the hex codes to characters. For example, "636174" becomes "cat".
+    //Reads an amount of expanded hex-codes from the buffer as a string.
+    //This will deconvert the binary data to readable hex codes. For example, "cat" in the buffer becomes "636174" when read.
     
     Buffer *b = gmdata.FindBuffer(gm_cast<unsigned int>(id));
     if(b == NULL) return "";
@@ -627,8 +627,8 @@ gmexport double buffer_write_hex(double id, const char* string) {
     ///buffer_write_hex(id,string)
     //id: buffer index
     //string: string to write
-    //Writes a string as expanded hex-codes to the buffer.
-    //This will convert the string into its hex codes. For example, "cat" becomes "636174".
+    //Writes a string of expanded hex-codes to the buffer as data.
+    //This will convert the hex codes in the string into binary data. For example, "636174" becomes "cat" in the buffer.
     
     Buffer *b = gmdata.FindBuffer(gm_cast<unsigned int>(id));
     if(b == NULL) return 0;
