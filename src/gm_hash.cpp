@@ -24,6 +24,7 @@
 
 MD5 gm_md5;
 SHA1 gm_sha1;
+CRC32 gm_crc32;
 
 gmexport const char* md5_file(const char* filename) {
     ///md5_file(filename)
@@ -32,8 +33,8 @@ gmexport const char* md5_file(const char* filename) {
     
     gm_md5.Begin();
     gm_md5.ReadFile(filename);
-    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     gm_md5.End();
+    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     return gmreturnstring.c_str();
 }
 
@@ -44,8 +45,8 @@ gmexport const char* md5_string(const char* string) {
     
     gm_md5.Begin();
     gm_md5.ReadMem(string, strlen(string));
-    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     gm_md5.End();
+    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     return gmreturnstring.c_str();
 }
 
@@ -58,8 +59,8 @@ gmexport const char* md5_buffer(double id) {
     if(b == NULL) return 0;
     gm_md5.Begin();
     gm_md5.ReadMem(b->GetData(), b->GetLength());
-    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     gm_md5.End();
+    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     return gmreturnstring.c_str();
 }
 
@@ -78,8 +79,8 @@ gmexport const char* md5_buffer_part(double id, double pos, double len) {
     if(_pos > l) _pos = l;
     if(_len > l - _pos) _len = l - _pos;
     gm_md5.ReadMem(b->GetData() + _pos, _len);
-    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     gm_md5.End();
+    gmreturnstring = BinToHex(gm_md5.Result(), 16);
     return gmreturnstring.c_str();
 }
 
@@ -91,8 +92,8 @@ gmexport const char* sha1_file(const char* filename) {
     
     gm_sha1.Begin();
     gm_sha1.ReadFile(filename);
-    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     gm_sha1.End();
+    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     return gmreturnstring.c_str();
 }
 
@@ -103,8 +104,8 @@ gmexport const char* sha1_string(const char* string) {
     
     gm_sha1.Begin();
     gm_sha1.ReadMem(string, strlen(string));
-    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     gm_sha1.End();
+    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     return gmreturnstring.c_str();
 }
 
@@ -117,8 +118,8 @@ gmexport const char* sha1_buffer(double id) {
     if(b == NULL) return 0;
     gm_sha1.Begin();
     gm_sha1.ReadMem(b->GetData(), b->GetLength());
-    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     gm_sha1.End();
+    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     return gmreturnstring.c_str();
 }
 
@@ -137,7 +138,64 @@ gmexport const char* sha1_buffer_part(double id, double pos, double len) {
     if(_pos > l) _pos = l;
     if(_len > l - _pos) _len = l - _pos;
     gm_sha1.ReadMem(b->GetData() + _pos, _len);
-    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
     gm_sha1.End();
+    gmreturnstring = BinToHex(gm_sha1.Result(), 20);
+    return gmreturnstring.c_str();
+}
+
+gmexport const char* crc32_file(const char* filename) {
+    ///crc32_file(filename)
+    //filename: file to hash
+    //Returns the CRC32 hash of the file contents.
+    
+    gm_crc32.Begin();
+    gm_crc32.ReadFile(filename);
+    gm_crc32.End();
+    gmreturnstring = BinToHex(gm_crc32.Result(), 4);
+    return gmreturnstring.c_str();
+}
+
+gmexport const char* crc32_string(const char* string) {
+    ///crc32_string(string)
+    //string: string to hash
+    //Returns the CRC32 hash of the string.
+    
+    gm_crc32.Begin();
+    gm_crc32.ReadMem(string, strlen(string));
+    gm_crc32.End();
+    gmreturnstring = BinToHex(gm_crc32.Result(), 4);
+    return gmreturnstring.c_str();
+}
+
+gmexport const char* crc32_buffer(double id) {
+    ///crc32_buffer(buffer)
+    //buffer: buffer to hash
+    //Returns the CRC32 hash of the buffer contents.
+    Buffer *b = gmdata.FindBuffer(gm_cast<unsigned int>(id));
+    if(b == NULL) return 0;
+    gm_crc32.Begin();
+    gm_crc32.ReadMem(b->GetData(), b->GetLength());
+    gm_crc32.End();
+    gmreturnstring = BinToHex(gm_crc32.Result(), 4);
+    return gmreturnstring.c_str();
+}
+
+gmexport const char* crc32_buffer_part(double id, double pos, double len) {
+    ///crc32_buffer_part(buffer,pos,len)
+    //buffer: buffer to hash
+    //pos,len: part of buffer to hash
+    //Returns the CRC32 hash of part of the buffer contents.
+    
+    Buffer *b = gmdata.FindBuffer(gm_cast<unsigned int>(id));
+    if(b == NULL) return 0;
+    gm_crc32.Begin();
+    unsigned int l = b->GetLength();
+    unsigned int _pos = gm_cast<unsigned int>(pos);
+    unsigned int _len = gm_cast<unsigned int>(len);
+    if(_pos > l) _pos = l;
+    if(_len > l - _pos) _len = l - _pos;
+    gm_crc32.ReadMem(b->GetData() + _pos, _len);
+    gm_crc32.End();
+    gmreturnstring = BinToHex(gm_crc32.Result(), 4);
     return gmreturnstring.c_str();
 }

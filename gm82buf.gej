@@ -701,6 +701,52 @@
 					"returntype": 2
 				},
 				{
+					"name": "crc32_buffer",
+					"extname": "",
+					"calltype": 12,
+					"helpline": "crc32_buffer(id)",
+					"hidden": false,
+					"argtypes": [
+						2
+					],
+					"returntype": 1
+				},
+				{
+					"name": "crc32_buffer_part",
+					"extname": "",
+					"calltype": 12,
+					"helpline": "crc32_buffer_part(id,pos,len)",
+					"hidden": false,
+					"argtypes": [
+						2,
+						2,
+						2
+					],
+					"returntype": 1
+				},
+				{
+					"name": "crc32_file",
+					"extname": "",
+					"calltype": 12,
+					"helpline": "crc32_file(filename)",
+					"hidden": false,
+					"argtypes": [
+						1
+					],
+					"returntype": 1
+				},
+				{
+					"name": "crc32_string",
+					"extname": "",
+					"calltype": 12,
+					"helpline": "crc32_string(string)",
+					"hidden": false,
+					"argtypes": [
+						1
+					],
+					"returntype": 1
+				},
+				{
 					"name": "listener_accept",
 					"extname": "",
 					"calltype": 12,
