@@ -723,7 +723,7 @@
 						2
 					],
 					"returntype": 1
-				}
+				},
 				{
 					"name": "crc32_file",
 					"extname": "",
