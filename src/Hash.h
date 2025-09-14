@@ -66,3 +66,19 @@ class SHA1 {
 	inline const char* Result() { return (char*) result.x; }
 	
 };
+
+class CRC32 {
+
+	private:
+	union {
+		uint32_t w; // 1 words
+		uint8_t x[4]; // 4 bytes
+	} result;
+	
+	public:
+	void Begin();
+	void ReadMem(const void* data, unsigned int datalen);
+	void End();
+	inline const char* Result() { return (char*) result.x; }
+	
+};

@@ -1245,6 +1245,30 @@
 					"hidden": true,
 					"argtypes": [],
 					"returntype": 2
+				},
+				{
+					"name": "crc32_buffer",
+					"extname": "",
+					"calltype": 12,
+					"helpline": "crc32_buffer(id)",
+					"hidden": false,
+					"argtypes": [
+						2
+					],
+					"returntype": 1
+				},
+				{
+					"name": "crc32_buffer_part",
+					"extname": "",
+					"calltype": 12,
+					"helpline": "crc32_buffer_part(id,pos,len)",
+					"hidden": false,
+					"argtypes": [
+						2,
+						2,
+						2
+					],
+					"returntype": 1
 				}
 			],
 			"constants": [
