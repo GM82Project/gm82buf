@@ -77,6 +77,7 @@ class CRC32 {
 	
 	public:
 	void Begin();
+	bool ReadFile(const char* fname);
 	void ReadMem(const void* data, unsigned int datalen);
 	void End();
 	inline const char* Result() { return (char*) result.x; }

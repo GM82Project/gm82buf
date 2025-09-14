@@ -143,6 +143,30 @@ gmexport const char* sha1_buffer_part(double id, double pos, double len) {
     return gmreturnstring.c_str();
 }
 
+gmexport const char* crc32_file(const char* filename) {
+    ///crc32_file(filename)
+    //filename: file to hash
+    //Returns the CRC32 hash of the file contents.
+    
+    gm_md5.Begin();
+    gm_md5.ReadFile(filename);
+    gm_md5.End();
+    gmreturnstring = BinToHex(gm_md5.Result(), 4);
+    return gmreturnstring.c_str();
+}
+
+gmexport const char* crc32_string(const char* string) {
+    ///crc32_string(string)
+    //string: string to hash
+    //Returns the CRC32 hash of the string.
+    
+    gm_md5.Begin();
+    gm_md5.ReadMem(string, strlen(string));
+    gm_md5.End();
+    gmreturnstring = BinToHex(gm_md5.Result(), 4);
+    return gmreturnstring.c_str();
+}
+
 gmexport const char* crc32_buffer(double id) {
     ///crc32_buffer(buffer)
     //buffer: buffer to hash

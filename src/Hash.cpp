@@ -369,14 +369,35 @@ const uint32_t crc_32_tab[] = {
 	0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0x2d02ef8d
 };
 
+void crc32_hash(uint32_t *result, uint8_t octet) {
+	*result = crc_32_tab[(*result ^ octet) & 0xFF] ^ (*result >> 8);
+}
+
 void CRC32::Begin() {
 	result.w = 0xFFFFFFFF;
+}
+
+bool SHA1::ReadFile(const char* fname) {
+	FILE* f;
+	f = fopen(fname, "rb");
+	if(f == NULL) return false;
+
+	uint8_t block[64];
+	for( ; ; ) {
+		size_t len = fread(block, 1, 64, f);
+		if (len == 0)
+			break;
+		for (unsigned int i = 0; i < len; ++i)
+			crc32_hash(result.w, block[i]);
+	}
+	fclose(f);
+	return true;
 }
 
 void CRC32::ReadMem(const void* data, unsigned int datalen) {
 	uint8_t* in = (uint8_t*)(data);
 	while (datalen--)
-		result.w = crc_32_tab[(result.w ^ *in++) & 0xFF] ^ (result.w >> 8);
+		crc32_hash(&result.w, *in++);
 }
 
 void CRC32::End() {
