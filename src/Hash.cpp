@@ -377,7 +377,7 @@ void CRC32::Begin() {
 	result.w = 0xFFFFFFFF;
 }
 
-bool SHA1::ReadFile(const char* fname) {
+bool CRC32::ReadFile(const char* fname) {
 	FILE* f;
 	f = fopen(fname, "rb");
 	if(f == NULL) return false;
@@ -388,7 +388,7 @@ bool SHA1::ReadFile(const char* fname) {
 		if (len == 0)
 			break;
 		for (unsigned int i = 0; i < len; ++i)
-			crc32_hash(result.w, block[i]);
+			crc32_hash(&result.w, block[i]);
 	}
 	fclose(f);
 	return true;
