@@ -387,7 +387,7 @@ bool CRC32::ReadFile(const char* fname) {
 		size_t len = fread(block, 1, 64, f);
 		if (len == 0)
 			break;
-		for (unsigned int i = 0; i < len; ++i)
+		for (int i = 0; i < len; ++i)
 			crc32_hash(&result.w, block[i]);
 	}
 	fclose(f);

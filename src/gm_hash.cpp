@@ -148,10 +148,10 @@ gmexport const char* crc32_file(const char* filename) {
     //filename: file to hash
     //Returns the CRC32 hash of the file contents.
     
-    gm_md5.Begin();
-    gm_md5.ReadFile(filename);
-    gm_md5.End();
-    gmreturnstring = BinToHex(gm_md5.Result(), 4);
+    gm_crc32.Begin();
+    gm_crc32.ReadFile(filename);
+    gm_crc32.End();
+    gmreturnstring = BinToHex(gm_crc32.Result(), 4);
     return gmreturnstring.c_str();
 }
 
@@ -160,10 +160,10 @@ gmexport const char* crc32_string(const char* string) {
     //string: string to hash
     //Returns the CRC32 hash of the string.
     
-    gm_md5.Begin();
-    gm_md5.ReadMem(string, strlen(string));
-    gm_md5.End();
-    gmreturnstring = BinToHex(gm_md5.Result(), 4);
+    gm_crc32.Begin();
+    gm_crc32.ReadMem(string, strlen(string));
+    gm_crc32.End();
+    gmreturnstring = BinToHex(gm_crc32.Result(), 4);
     return gmreturnstring.c_str();
 }
 
