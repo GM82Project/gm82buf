@@ -196,7 +196,7 @@ gmexport double buffer_write_to_file(double id, const char* filename) {
     return (b->WriteToFile(filename,false))? 1 : 0;
 }
 gmexport double buffer_write_to_temp_file(double id, const char* filename) {
-    ///buffer_save(id,filename)
+    ///buffer_save_temp(id,filename)
     //id: buffer index
     //filename: file to save to
     //Saves the buffer to a temporary file.
