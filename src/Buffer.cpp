@@ -72,17 +72,10 @@ void Buffer::SetLength(unsigned int newlength) {
 	unsigned int new_capacity;
 	if(required > capacity) {
 		new_capacity = required + min(required/2,4096);
-	} else if(required <= capacity) {
-		new_capacity = required;
 	} else {
-		// no reallocation
-		length = newlength;
-		if(pos > length) {
-			pos = length;
-		}
-		data[length] = '\0';
-		return;
+		new_capacity = required;
 	}
+    
 	void *temp = realloc(data, new_capacity);
 	if(temp == NULL) {
 		throw std::bad_alloc();
