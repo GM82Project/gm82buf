@@ -71,9 +71,9 @@ void Buffer::SetLength(unsigned int newlength) {
 	if(required < 16) required = 16;
 	unsigned int new_capacity;
 	if(required > capacity) {
-		new_capacity = required + required / 2;
-	} else if(required <= capacity / 2) {
-		new_capacity = required + required / 4;
+		new_capacity = required + min(required/2,4096);
+	} else if(required <= capacity) {
+		new_capacity = required;
 	} else {
 		// no reallocation
 		length = newlength;
